@@ -37,4 +37,15 @@ with tab2:
     top10 = top_numbers(count, 10)
     st.write('자주 나온 번호 TOP10:', to_text(top10))
 
-    
+
+with tab3:
+    # ③ 수동 선택 + 자동 채우기
+    picked = st.multiselect(
+        "번호를 고르세요 (최대 6개)",
+        list(range(1, 46)),
+        max_selections=6,
+        format_func=lambda x: f'{x}번 ({count[x]}회)'
+    )
+
+    if st.button('나머지 자동으로 채우기'):
+        st.success(to_text(fill_game(picked)))
